@@ -1,0 +1,21 @@
+{
+    "name": "coreorm/example",
+    "description": "Core ORM/Examples",
+    "keywords": ["framework", "Core ORM", "DAO"],
+    "license": "MIT",
+    "require": {
+        "coreorm/framework": "*"
+    },
+    "autoload": {
+        "files": [
+            "vendor/coreorm/framework/src/Core.php"
+        ],
+        "psr-4": {
+            "Example\\":"Example"
+        }
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "minimum-stability": "dev"
+}
