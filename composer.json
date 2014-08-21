@@ -4,14 +4,12 @@
     "keywords": ["framework", "Core ORM", "DAO"],
     "license": "MIT",
     "require": {
-        "coreorm/framework": "*"
+        "coreorm/framework": "*",
+        "slim/slim": "2.*"
     },
     "autoload": {
-        "files": [
-            "vendor/coreorm/framework/src/Core.php"
-        ],
         "psr-4": {
-            "Example\\":"Example"
+            "Example\\":"Examples"
         }
     },
     "config": {
