@@ -1,11 +1,4 @@
 <?php
 /**
- * base class (well, the entire package, rather)
- * for to-do list app
+ * Simple Todo package
  */
-namespace Example\App;
-
-class Todo extends Base
-{
-
-}

@@ -13,4 +13,7 @@ return array(
         )
     ),
     'debug' => true,
+    'apps' => array(
+        '/todo' => 'Todo.php',
+    )
 );
