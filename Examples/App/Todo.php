@@ -2,3 +2,87 @@
 /**
  * Simple Todo package
  */
+use Slim\Slim, \CoreORM\Utility\Assoc, CoreORM\Dao\Orm, \Example\Model\Todo;
+$app = new Slim();
+$app->get('/todo', function() {
+    // display the form here...
+    require_once __TMPPATH___ . 'todo/index.php';
+});
+// deal with post
+$app->post('/todo', function() use ($app) {
+    try {
+        $dao = singleton('CoreORM\Dao\Orm');
+        if (!$dao instanceof Orm) {
+            throw new \Exception('unable to retrieve dao');
+        }
+        // start by checking action
+        $action = $app->request->params('action');
+        $response = array(
+            'success' => true,
+            'action' => $action,
+        );
+        switch ($action) {
+            case 'add':
+                $item = trim($app->request->params('item'));
+                if (empty($item)) {
+                    throw new \Exception('Todo item is empty');
+                }
+                $todoItem = new Todo();
+                $todoItem->setItem($item)
+                         ->setCreatedAt(date('Y-m-d H:i:s'));
+                $dao->writeModel($todoItem);
+                break;
+            case 'update':
+                $id = (int) $app->request->params('id');
+                if (empty($id)) {
+                    throw new \Exception('Invalid Item Id, can not locate item');
+                }
+                $item = new Todo();
+                $item->setId($id);
+                $dao->readModel($item);
+                if ($item->getIsDone() == 'N') {
+                    $item->setIsDone('Y');
+                } else {
+                    $item->setIsDone('N');
+                }
+                $dao->writeModel($item);
+                $response['id'] = $id;
+                break;
+            case 'delete':
+                $id = (int) $app->request->params('id');
+                if (empty($id)) {
+                    throw new \Exception('Invalid Item Id, can not locate item');
+                }
+                $item = new Todo();
+                $item->setId($id);
+                $dao->deleteModel($item);
+                $response['id'] = $id;
+                break;
+            case 'load':
+                // do nothing, just wait till all is loaded
+                break;
+            default:
+                throw new \Exception('Invalid or empty action [' . $action . ']');
+                break;
+        }
+        // now get all data always...
+        $models = $dao->readModels(new Todo(), null, null, array(Todo::FIELD_CREATED_AT => 'DESC'));
+        $data = array();
+        foreach ($models as $model) {
+            if ($model instanceof \CoreORM\Model) {
+                $data[] = $model->toArray(); // todo: allow extra in array? toArray($withExternal, $override = array())?
+            }
+        }
+        $response['data'] = $data;
+        echo json_encode($response);
+    } catch (\Exception $e) {
+        echo json_encode(array(
+            'success' => false,
+            'error' => $e->getMessage()
+        ));
+    }
+});
+
+
+// run the app finally
+$app->run();

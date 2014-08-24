@@ -9,7 +9,8 @@ return array(
             'dbname' => 'coreorm_examples',
             'adaptor' => \CoreORM\Adaptor\Pdo::ADAPTOR_MYSQL,
             'user' => 'coreorm',
-            'pass' => 'example'
+            'pass' => 'example',
+            'host' => '127.0.0.1'
         )
     ),
     'debug' => true,
