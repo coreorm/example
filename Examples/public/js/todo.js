@@ -32,14 +32,14 @@ var CoreORM_Todo = {
             // all good, go to next
             if (response.data) {
                 var template = '<div id="item_:id"><label style=":style"><input type="checkbox"' +
-                          ' onclick="CoreORM_Todo.post({\'action\':\'update\',' +
-                          '\'id\':\':id\'});">:item <small style="font-size:10px;color:#555;">' +
-                          ':date</small></label><a href="#" onclick="return CoreORM_Todo.post({\'action\':\'delete\'' +
-                          ',\'id\':\':id\'});" style="color:red;"> X </a></div>';
+                              ' onclick="CoreORM_Todo.post({\'action\':\'update\',' +
+                              '\'id\':\':id\'});">:item </label><small>' +
+                              ':date</small><a href="#" onclick="return CoreORM_Todo.post({\'action\':\'delete\'' +
+                              ',\'id\':\':id\'});" style="color:red;"> X </a></div>';
                 var html = '';
                 for (var i in response.data) {
                     var Item = response.data[i];
-                    console.log(Item);
+//                    console.log(Item);
                     var tmpHtml = template.replace(':item', Item['item']);
                     tmpHtml = tmpHtml.replace(':id', Item.id).replace(':id', Item.id).replace(':id', Item.id);
                     tmpHtml = tmpHtml.replace(':date', Item.created_at);

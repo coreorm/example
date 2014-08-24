@@ -33,4 +33,8 @@
 #items div a{
     text-decoration:none;
 }
+#items div small{
+    font-size:10px;color:#555;
+    margin: 6px 0;
+}
 </style>
