@@ -75,7 +75,9 @@ $app->post('/todo', function() use ($app) {
         $data = array();
         foreach ($models as $model) {
             if ($model instanceof Todo) {
-                $tmpArray = $model->toArray();
+                $tmpArray = $model->toArray(false, array(
+                    Todo::FIELD_ITEM => 'htmlentities', // use htmlentities on the item field to avoid xss attacks
+                ));
                 // clean up a few things
                 $data[] = $tmpArray;
             }
