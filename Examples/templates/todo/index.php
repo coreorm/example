@@ -22,7 +22,7 @@
 <script type="text/javascript" src="/js/todo.js"></script>
 <style>
 #items{
-    font:15px Source Sans Pro, sans-serif, arial;line-height:1.5;
+    line-height:1.5;
 }
 #items div{
     padding:4px 0;

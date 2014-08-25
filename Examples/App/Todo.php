@@ -11,19 +11,17 @@ $app->get('/todo', function() {
 // deal with post
 $app->post('/todo', function() use ($app) {
     try {
-        $dbConf = \CoreORM\Utility\Config::get('database.example');
-        $dao = new Orm('example', $dbConf);
-        if (!$dao instanceof Orm) {
-            throw new \Exception('unable to retrieve dao');
-        }
-
+        // we already set the default_database to 'example', so this is the
+        // equivalent of $dao = new Orm('example');
+        $dao = new Orm();
         // start by checking action
         $action = $app->request->params('action');
+        // start preping response
         $response = array(
             'success' => true,
             'action' => $action,
         );
-
+        // CRUD
         switch ($action) {
             case 'add':
                 $item = trim($app->request->params('item'));
@@ -76,8 +74,10 @@ $app->post('/todo', function() use ($app) {
         $models = $dao->readModels(new Todo(), null, null, array(Todo::FIELD_CREATED_AT => 'DESC'));
         $data = array();
         foreach ($models as $model) {
-            if ($model instanceof \CoreORM\Model) {
-                $data[] = $model->toArray();
+            if ($model instanceof Todo) {
+                $tmpArray = $model->toArray();
+                // clean up a few things
+                $data[] = $tmpArray;
             }
         }
         $response['data'] = $data;

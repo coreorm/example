@@ -3,8 +3,8 @@
  * Example config
  */
 return array(
+    'default_database' => 'example',
     'database' => array(
-        'default' => 'example',
         'example' => array(
             'dbname' => 'coreorm_examples',
             'adaptor' => \CoreORM\Adaptor\Pdo::ADAPTOR_MYSQL,
