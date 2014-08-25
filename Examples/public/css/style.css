@@ -124,7 +124,7 @@
 
 	p
 	{
-		text-align: center;
+		text-align: left;
 	}
 
 	p, ul, ol, dl, table, blockquote
@@ -871,3 +871,7 @@
 		border-top: solid 2px #e5e5e5;
 		text-align: center;
 	}
+
+    pre{
+        font-family:monospace, serif;
+    }

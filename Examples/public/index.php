@@ -23,11 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // include body
 $uri = $_SERVER['REQUEST_URI'];
 $uri = parse_url($uri, PHP_URL_PATH);
-$app = Config::get('apps.' . $uri);
-$dbConf = Config::get('database');
-foreach ($dbConf as $k => $v) {
-    setDbConfig($k, $v);
-}
+$app = Config::get('apps.' . $uri . '.file');
 // main page
 ob_start();
 if (!empty($app)) {

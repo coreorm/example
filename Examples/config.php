@@ -15,6 +15,11 @@ return array(
     ),
     'debug' => true,
     'apps' => array(
-        '/todo' => 'Todo.php',
-    )
+        '/todo' => array(
+            'file' =>  'Todo.php',
+            'desc' => '<p>A simple to-do list backed by CoreORM. It demonstrates the ' .
+                      'basic usage of CRUD operation on objects instead of raw sql queries.</p>',
+            'name' => 'To-do List'
+        ),
+    ),
 );

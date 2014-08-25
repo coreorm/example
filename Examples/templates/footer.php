@@ -7,5 +7,6 @@
         </ul>
     </div>
 
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=php&skin=sons-of-obsidian"></script>
 </body>
 </html>

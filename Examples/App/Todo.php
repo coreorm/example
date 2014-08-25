@@ -11,16 +11,19 @@ $app->get('/todo', function() {
 // deal with post
 $app->post('/todo', function() use ($app) {
     try {
-        $dao = singleton('CoreORM\Dao\Orm');
+        $dbConf = \CoreORM\Utility\Config::get('database.example');
+        $dao = new Orm('example', $dbConf);
         if (!$dao instanceof Orm) {
             throw new \Exception('unable to retrieve dao');
         }
+
         // start by checking action
         $action = $app->request->params('action');
         $response = array(
             'success' => true,
             'action' => $action,
         );
+
         switch ($action) {
             case 'add':
                 $item = trim($app->request->params('item'));
@@ -32,6 +35,7 @@ $app->post('/todo', function() use ($app) {
                          ->setCreatedAt(date('Y-m-d H:i:s'));
                 $dao->writeModel($todoItem);
                 break;
+
             case 'update':
                 $id = (int) $app->request->params('id');
                 if (empty($id)) {
@@ -48,6 +52,7 @@ $app->post('/todo', function() use ($app) {
                 $dao->writeModel($item);
                 $response['id'] = $id;
                 break;
+
             case 'delete':
                 $id = (int) $app->request->params('id');
                 if (empty($id)) {
@@ -58,6 +63,7 @@ $app->post('/todo', function() use ($app) {
                 $dao->deleteModel($item);
                 $response['id'] = $id;
                 break;
+
             case 'load':
                 // do nothing, just wait till all is loaded
                 break;
@@ -65,12 +71,13 @@ $app->post('/todo', function() use ($app) {
                 throw new \Exception('Invalid or empty action [' . $action . ']');
                 break;
         }
+
         // now get all data always...
         $models = $dao->readModels(new Todo(), null, null, array(Todo::FIELD_CREATED_AT => 'DESC'));
         $data = array();
         foreach ($models as $model) {
             if ($model instanceof \CoreORM\Model) {
-                $data[] = $model->toArray(); // todo: allow extra in array? toArray($withExternal, $override = array())?
+                $data[] = $model->toArray();
             }
         }
         $response['data'] = $data;
