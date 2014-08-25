@@ -2,8 +2,8 @@
 <!-- Footer -->
     <div id="copyright">
         <ul class="links">
-            <li> &copy; Bruce B Li @ CoreORM. All rights reserved.</li>
-            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <li> &copy; Bruce B Li @ <a href="https://github.com/coreorm/">CoreORM</a>. All rights reserved.</li>
+            <li>Design: <a target="_blank" href="http://html5up.net">HTML5 UP</a></li>
         </ul>
     </div>
 

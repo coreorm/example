@@ -76,7 +76,8 @@ $app->post('/todo', function() use ($app) {
         foreach ($models as $model) {
             if ($model instanceof Todo) {
                 $tmpArray = $model->toArray(false, array(
-                    Todo::FIELD_ITEM => array('strip_tags', 'htmlentities'), // use strip_tags then htmlentities on the item field to avoid xss attacks
+                    // use strip_tags then htmlentities on the item field to avoid xss attacks
+                    Todo::FIELD_ITEM => array('strip_tags', 'htmlentities'),
                 ));
                 // alternatively, we can also take advantage of the builtin getter with filter function:
                 /*
