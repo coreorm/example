@@ -4,7 +4,7 @@
  * config file
  *
  */
-$dir = __DIR__;
+$dir = __DIR__ . '/Model';
 return [
     'database' => array(
         'dbname' => 'coreorm_examples',

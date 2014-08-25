@@ -95,38 +95,42 @@ class Todo extends Model
     /**
      * retrieve Id
      * @param mixed $default
+     * @param array $filter filter call back function
      * @return int
      */
-    public function getId($default = null)
+    public function getId($default = null, $filter = array())
     {
-        return parent::rawGetFieldData('todo_id', $default);
+        return parent::rawGetFieldData('todo_id', $default, $filter);
     }
     /**
      * retrieve Item
      * @param mixed $default
+     * @param array $filter filter call back function
      * @return string
      */
-    public function getItem($default = null)
+    public function getItem($default = null, $filter = array())
     {
-        return parent::rawGetFieldData('todo_item', $default);
+        return parent::rawGetFieldData('todo_item', $default, $filter);
     }
     /**
      * retrieve IsDone
      * @param mixed $default
+     * @param array $filter filter call back function
      * @return string
      */
-    public function getIsDone($default = null)
+    public function getIsDone($default = null, $filter = array())
     {
-        return parent::rawGetFieldData('todo_is_done', $default);
+        return parent::rawGetFieldData('todo_is_done', $default, $filter);
     }
     /**
      * retrieve CreatedAt
      * @param string $format
      * @param mixed $default
+     * @param array $filter filter call back function
      * @return datetime
      */
-    public function getCreatedAt($format = 'jS F, Y H:i', $default = null)
+    public function getCreatedAt($format = 'jS F, Y H:i', $default = null, $filter = array())
     {
-        return parent::formatDateByName('todo_created_at', $format, $default);
+        return parent::formatDateByName('todo_created_at', $format, $default, $filter);
     }
 }

@@ -3,7 +3,15 @@ CoreORM Example
 
 Examples of CoreORM usage, from simple to more advanced.
 
-It requires slim framework and backbone.js.
+### Dependencies
+The very first time, run
+```
+composer install --prefer-dist
+```
+Then for updates, run
+```
+composer update --prefer-dist
+```
 
 ### Apache conf
 ```
@@ -30,3 +38,10 @@ Remeber to add
 to your local /etc/hosts
 
 Also restart apache.
+
+### Generating models
+
+Models are pre-generated under Examples/Model folder already, but considering future updates from CoreORM\Framework, you can always generate new models by running
+```
+./modeller Examples/config.models.php
+```
