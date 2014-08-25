@@ -39,6 +39,9 @@ to your local /etc/hosts
 
 Also restart apache.
 
+### Visit page
+Go to your browser and enter http://example.core.orm
+
 ### Generating models
 
 Models are pre-generated under Examples/Model folder already, but considering future updates from CoreORM\Framework, you can always generate new models by running
