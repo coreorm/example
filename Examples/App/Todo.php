@@ -72,6 +72,10 @@ $app->post('/todo', function() use ($app) {
 
         // now get all data always...
         $models = $dao->readModels(new Todo(), null, null, array(Todo::FIELD_CREATED_AT => 'DESC'));
+        if (count($models) > 10) {
+            // run clean up so we don't take too much space...
+            require_once __DIR__ . '/cleanup.php';
+        }
         $data = array();
         foreach ($models as $model) {
             if ($model instanceof Todo) {
